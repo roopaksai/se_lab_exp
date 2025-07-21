@@ -1,11 +1,5 @@
 """
 Weather Modelling Program using Quadratic Equation
-
-T(t) = a*t^2 + b*t + c
-Where:
-- T = Temperature (°C)
-- t = Time (hours from midnight)
-- a, b, c = Coefficients
 """
 
 class WeatherModel:
@@ -15,12 +9,10 @@ class WeatherModel:
         self.c = c
 
     def predict(self, t):
-        """Predict temperature at time t (hours from midnight)."""
         t = t % 24
         return self.a * t**2 + self.b * t + self.c
 
     def peak_temperature(self):
-        """Return (time, temperature) of peak temperature in the day."""
         if self.a >= 0:
             return None, None
         t_peak = -self.b / (2 * self.a)
@@ -28,7 +20,6 @@ class WeatherModel:
         return t_peak, T_peak
 
     def equation_info(self):
-        """Return discriminant and parabola direction."""
         D = self.b**2 - 4*self.a*self.c
         direction = "downward" if self.a < 0 else "upward" if self.a > 0 else "linear"
         return D, direction
